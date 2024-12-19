@@ -15,3 +15,13 @@ nodemon -> to speed up the node.js applications processes
 
 postman -> to analyse and verify api requests 
 
+connecting to db using connection string and creating models using mongoose
+
+using postman api verified signup page is fetching and posting details correctly 
+
+
+Bcrypt -> using salt of 10 to hash password strongly
+
+## If Error in signup controller E11000 duplicate key error collection: chat-app.users index: username_1 dup key: { username: null }
+
+### Drop collection and create new -> Just works fine 
