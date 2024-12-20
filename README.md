@@ -25,3 +25,11 @@ Bcrypt -> using salt of 10 to hash password strongly
 ## If Error in signup controller E11000 duplicate key error collection: chat-app.users index: username_1 dup key: { username: null }
 
 ### Drop collection and create new -> Just works fine 
+
+Routes for messages and conversations has been set using postman verification aside.
+
+all the contents are saved in the db using reference user id and retreived using them 
+
+# if convo is saved before new msg --- useless X
+
+# newMessage.save() then convo.save() --- Verified
