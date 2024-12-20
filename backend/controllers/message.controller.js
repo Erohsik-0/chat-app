@@ -5,8 +5,8 @@
 
 import Conversation from "../models/conversation.model.js";
 import Message from "../models/message.model.js";
-
-export const sendMessage = async(req,res) => {
+ 
+export const sendMessage = async (req,res) => {
 
     try {
      
@@ -33,11 +33,13 @@ export const sendMessage = async(req,res) => {
         // await conversation.save();
         // await newMessage.save();
 
-        await Promise.all([conversation.save(),newMessage.save()]); //to save both conversation and message in parallel 
-
         if (newMessage){
             conversation.messages.push(newMessage._id);
         }
+
+        await Promise.all([newMessage.save(),conversation.save()]); //to save both conversation and message in parallel
+        // newMessage should be first bcuz it has reference to conversation 
+        //if after conversation, then conversation will be saved first and then newMessage will not be referenced to conversation
 
         res.status(201).json({newMessage});
 
@@ -46,5 +48,31 @@ export const sendMessage = async(req,res) => {
         console.log("Error in sendMessage Controller: ",error.message);
         res.status(500).json({error:"Internal server error"});
         
+    }
+}
+
+export const getMessage = async (req,res) => {
+    try {
+        
+        const {id:userToChatId} = req.params;
+        const senderId = req.user._id;
+        
+        const conversation = await Conversation.findOne({
+            participants:{$all:[senderId,userToChatId]}
+        }).populate("messages"); //Not reference but actual messages
+
+        // console.log(conversation);
+
+        if(!conversation){
+            return res.status(200).json([]);
+        }
+
+        const messages = conversation.messages;
+
+        res.status(200).json(messages);
+
+    } catch (error) {
+        console.log("Error in getMessage Controller: ",error.message);
+        res.status(500).json({error:"Internal server error"});
     }
 }
