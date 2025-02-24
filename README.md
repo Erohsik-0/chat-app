@@ -1,35 +1,33 @@
-npm create vite@latest .
+# MERN Stack Project: Build and Deploy a Real Time Chat App | JWT, Socket.io
 
-npm i
+Some Features:
 
-npm install epxress -> Initializing an express server
-            dotenv -> To read env variables under the dotenv file
-            cookie-parser -> To parse the cookies
-            bcryptjs -> To hash passwords 
-            mongoose -> to connect ot our database 
-            socket.io -> to have real-time communication
-            jsonwebtoken -> To deal with web tokens creation, deletion, validation
+-   🌟 Tech stack: MERN + Socket.io + TailwindCSS + Daisy UI
+-   🎃 Authentication && Authorization with JWT
+-   👾 Real-time messaging with Socket.io
+-   🚀 Online user status (Socket.io and React Context)
+-   👌 Global state management with Zustand
+-   🐞 Error handling both on the server and on the client
+-   ⭐ At the end Deployment like a pro for FREE!
+-   ⏳ And much more!
 
-nodemon -> to speed up the node.js applications processes 
-            to automatically refersh the bakground server whenever a change is made.
+### Setup .env file
 
-postman -> to analyse and verify api requests 
+```js
+PORT=...
+MONGO_DB_URI=...
+JWT_SECRET=...
+NODE_ENV=...
+```
 
-connecting to db using connection string and creating models using mongoose
+### Build the app
 
-using postman api verified signup page is fetching and posting details correctly 
+```shell
+npm run build
+```
 
+### Start the app
 
-Bcrypt -> using salt of 10 to hash password strongly
-
-## If Error in signup controller E11000 duplicate key error collection: chat-app.users index: username_1 dup key: { username: null }
-
-### Drop collection and create new -> Just works fine 
-
-Routes for messages and conversations has been set using postman verification aside.
-
-all the contents are saved in the db using reference user id and retreived using them 
-
-# if convo is saved before new msg --- useless X
-
-# newMessage.save() then convo.save() --- Verified
+```shell
+npm start
+```
